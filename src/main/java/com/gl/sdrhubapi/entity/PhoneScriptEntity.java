@@ -1,8 +1,12 @@
 package com.gl.sdrhubapi.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
+@Data
+@Table(name="phone_script_entity")
 public class PhoneScriptEntity {
 
     @Id
