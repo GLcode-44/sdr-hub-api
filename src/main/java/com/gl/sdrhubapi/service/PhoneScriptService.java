@@ -8,4 +8,10 @@ public interface PhoneScriptService {
     PhoneScript createPhoneScript(PhoneScript phoneScript);
 
     List<PhoneScript> getAllPhoneScripts();
+
+    boolean deletePhoneScript(Long id);
+
+    PhoneScript getPhoneScriptById(Long id);
+
+    PhoneScript updatePhoneScript(Long id, PhoneScript phoneScript);
 }

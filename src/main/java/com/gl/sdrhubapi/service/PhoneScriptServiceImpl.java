@@ -39,4 +39,37 @@ public class PhoneScriptServiceImpl implements PhoneScriptService{
                         .collect(Collectors.toList());
         return phoneScripts;
     }
+
+    @Override
+    public boolean deletePhoneScript(Long id) {
+        PhoneScriptEntity phoneScriptEntity = phoneScriptRepository.findById(id).get();
+        phoneScriptRepository.delete(phoneScriptEntity);
+        return true;
+    }
+
+    @Override
+    public PhoneScript getPhoneScriptById(Long id) {
+        PhoneScriptEntity phoneScriptEntity
+                = phoneScriptRepository.findById(id).get();
+        PhoneScript phoneScript = new PhoneScript();
+        BeanUtils.copyProperties(phoneScriptEntity, phoneScript);
+        return phoneScript;
+    }
+
+    @Override
+    public PhoneScript updatePhoneScript(Long id, PhoneScript phoneScript) {
+        PhoneScriptEntity phoneScriptEntity
+                = phoneScriptRepository.findById(id).get();
+        phoneScriptEntity.setMissesB(phoneScript.getMissesB());
+        phoneScriptEntity.setHitsB(phoneScript.getHitsB());
+        phoneScriptEntity.setScript_b_text(phoneScript.getScript_b_text());
+        phoneScriptEntity.setScriptB(phoneScript.getScriptB());
+        phoneScriptEntity.setMissesA(phoneScript.getMissesA());
+        phoneScriptEntity.setHitsA(phoneScript.getHitsA());
+        phoneScriptEntity.setScript_a_text(phoneScript.getScript_a_text());
+        phoneScriptEntity.setScriptA(phoneScript.getScriptA());
+
+        phoneScriptRepository.save(phoneScriptEntity);
+        return phoneScript;
+    }
 }
